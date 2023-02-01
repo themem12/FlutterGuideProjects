@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:qr_reader/models/scan_model.dart';
-import 'package:qr_reader/providers/db_provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/screens/directions_screen.dart';
 import 'package:qr_reader/screens/maps_screen.dart';
@@ -15,10 +14,14 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.deepPurple,
         title: const Text('Historial'),
         actions: [
-          IconButton(onPressed: () {}, icon: const Icon(Icons.delete_forever))
+          IconButton(
+              onPressed: () {
+                Provider.of<ScanListProvider>(context, listen: false)
+                    .deleteScans();
+              },
+              icon: const Icon(Icons.delete_forever))
         ],
       ),
       body: const _HomeScreenBody(),
@@ -37,10 +40,17 @@ class _HomeScreenBody extends StatelessWidget {
     final uiProvider = Provider.of<UIProvider>(context);
     final currentIndex = uiProvider.selectedMenuOpt;
 
+    final scanlListProvider =
+        Provider.of<ScanListProvider>(context, listen: false);
+
     switch (currentIndex) {
       case 0:
+        scanlListProvider.selectedType = 'geo';
+        scanlListProvider.loadScansByType('geo');
         return const MapsScreen();
       case 1:
+        scanlListProvider.selectedType = 'http';
+        scanlListProvider.loadScansByType('http');
         return const DirectionsScreen();
       default:
         return const MapsScreen();

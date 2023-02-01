@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:qr_reader/providers/scan_list_provider.dart';
 import 'package:qr_reader/providers/ui_provider.dart';
 import 'package:qr_reader/screens/home_screen.dart';
 import 'package:qr_reader/screens/map_screen.dart';
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => UIProvider()),
+        ChangeNotifierProvider(create: (_) => ScanListProvider())
       ],
       child: MaterialApp(
         title: 'QR Reader',
@@ -26,6 +28,12 @@ class MyApp extends StatelessWidget {
           primaryColor: Colors.deepPurple,
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
               backgroundColor: Colors.deepPurple),
+          appBarTheme: const AppBarTheme(
+            color: Colors.deepPurple,
+          ),
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+            selectedItemColor: Colors.deepPurple,
+          ),
         ),
       ),
     );

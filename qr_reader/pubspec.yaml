@@ -40,6 +40,8 @@ dependencies:
   flutter_barcode_scanner: ^2.0.0
   path_provider: ^2.0.12
   sqflite: ^2.2.4+1
+  url_launcher: ^6.1.8
+  google_maps_flutter: ^2.2.3
 
 dev_dependencies:
   flutter_test:
