@@ -5,7 +5,7 @@ import 'package:form_validation/services/services.dart';
 import 'package:form_validation/ui/input_decoration.dart';
 import 'package:form_validation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:image_picker/image_picker.dart' show ImagePicker, ImageSource, PickedFile;
 
 class ProductScreen extends StatelessWidget {
    const ProductScreen({super.key});
@@ -51,7 +51,7 @@ class _ProductScreenBody extends StatelessWidget {
                       final PickedFile? pickedFile = await picker.getImage(source: ImageSource.camera, 
                       imageQuality: 100);
                       if(pickedFile == null) {
-                        print('no seleccionó nada');
+                        debugPrint('no seleccionó nada');
                         return;
                       }
 
@@ -119,6 +119,7 @@ class _ProductForm extends StatelessWidget {
                   if(value == null || value.isEmpty) {
                     return 'El nombre es obligatorio';
                   }
+                  return null;
                 }
               ),
               const SizedBox(height: 30,),

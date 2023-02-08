@@ -61,82 +61,81 @@ class _LoginForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final loginForm = Provider.of<LoginFormProvider>(context);
-    return Container(
-      child: Form(
-        key: loginForm.formKey,
-        autovalidateMode: AutovalidateMode.onUserInteraction,
-        child: Column(
-          children: [
-            TextFormField(
-              onChanged: (value) => loginForm.email = value,
-              autocorrect: false,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputsDecorations.authInputDecoration(
-                  hintText: 'john@gmail.com',
-                  labelText: 'Correo electrónico',
-                  prefixIcon: Icons.alternate_email_outlined),
-              validator: (value) {
-                String patter = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}";
-                RegExp regExp = RegExp(patter);
-                return regExp.hasMatch(value ?? '') ? null : 'Correo inválido.';
-              },
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            TextFormField(
-              onChanged: (value) => loginForm.password = value,
-              autocorrect: false,
-              obscureText: true,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputsDecorations.authInputDecoration(
-                  hintText: '********',
-                  labelText: 'Contraseña',
-                  prefixIcon: Icons.lock_outline),
-              validator: (value) {
-                if (value != null && value.length >= 6) {
-                  return null;
-                } else {
-                  return 'Contraseña inválida (mínimo 6 caractéres).';
-                }
-              },
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            MaterialButton(
-              onPressed: loginForm.isLoading
-                  ? null
-                  : () async {
-                      FocusScope.of(context).unfocus();
-                      if (!loginForm.isValidForm()) return;
-                      loginForm.isLoading = true;
+    return Form(
+      key: loginForm.formKey,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
+      child: Column(
+        children: [
+          TextFormField(
+            onChanged: (value) => loginForm.email = value,
+            autocorrect: false,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputsDecorations.authInputDecoration(
+                hintText: 'john@gmail.com',
+                labelText: 'Correo electrónico',
+                prefixIcon: Icons.alternate_email_outlined),
+            validator: (value) {
+              String patter = "^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}";
+              RegExp regExp = RegExp(patter);
+              return regExp.hasMatch(value ?? '') ? null : 'Correo inválido.';
+            },
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          TextFormField(
+            onChanged: (value) => loginForm.password = value,
+            autocorrect: false,
+            obscureText: true,
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputsDecorations.authInputDecoration(
+                hintText: '********',
+                labelText: 'Contraseña',
+                prefixIcon: Icons.lock_outline),
+            validator: (value) {
+              if (value != null && value.length >= 6) {
+                return null;
+              } else {
+                return 'Contraseña inválida (mínimo 6 caractéres).';
+              }
+            },
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          MaterialButton(
+            onPressed: loginForm.isLoading
+                ? null
+                : () async {
+                    FocusScope.of(context).unfocus();
+                    if (!loginForm.isValidForm()) return;
+                    loginForm.isLoading = true;
 
-                      await Future.delayed(Duration(seconds: 2));
+                    await Future.delayed(const Duration(seconds: 2));
 
-                      loginForm.isLoading = false;
-
+                    loginForm.isLoading = false;
+                    if(context.mounted) {
                       Navigator.pushReplacementNamed(context, 'home');
-                    },
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              disabledColor: Colors.grey,
-              elevation: 0,
-              color: Colors.deepPurple,
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                child: loginForm.isLoading
-                    ? const CupertinoActivityIndicator()
-                    : const Text(
-                        'Ingresar',
-                        style: TextStyle(color: Colors.white),
-                      ),
-              ),
-            )
-          ],
-        ),
+                    }
+                  },
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            disabledColor: Colors.grey,
+            elevation: 0,
+            color: Colors.deepPurple,
+            child: Container(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+              child: loginForm.isLoading
+                  ? const CupertinoActivityIndicator()
+                  : const Text(
+                      'Ingresar',
+                      style: TextStyle(color: Colors.white),
+                    ),
+            ),
+          )
+        ],
       ),
     );
   }

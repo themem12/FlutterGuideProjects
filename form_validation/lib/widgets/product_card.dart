@@ -62,7 +62,7 @@ class _NotAvailable extends StatelessWidget {
       height: 70,
       decoration: BoxDecoration(
         color: Colors.yellow[800],
-        borderRadius: BorderRadius.only(topLeft: Radius.circular(25), bottomRight: Radius.circular(25))
+        borderRadius: const BorderRadius.only(topLeft: Radius.circular(25), bottomRight: Radius.circular(25))
       ),
       child: const FittedBox(
         fit: BoxFit.contain,
@@ -147,7 +147,7 @@ class _BackgroundImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
-      child: Container(
+      child: SizedBox(
         width: double.infinity,
         height: 400,
         child: 

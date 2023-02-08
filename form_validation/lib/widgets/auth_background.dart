@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class AuthBackground extends StatelessWidget {
   final Widget child;
 
-  const AuthBackground({required this.child});
+  const AuthBackground({super.key, required this.child});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
       child: Stack(
@@ -49,34 +49,34 @@ class _PurpleBox extends StatelessWidget {
       child: Stack(
         children: const [
           Positioned(
-            child: _Bubble(),
             top: 90,
             left: 10,
+            child: _Bubble(),
           ),
           Positioned(
-            child: _Bubble(),
             top: -40,
             left: 60,
+            child: _Bubble(),
           ),
           Positioned(
-            child: _Bubble(),
             bottom: -40,
             left: 40,
+            child: _Bubble(),
           ),
           Positioned(
-            child: _Bubble(),
             bottom: 20,
             right: 45,
+            child: _Bubble(),
           ),
           Positioned(
-            child: _Bubble(),
             top: 180,
             left: 120,
+            child: _Bubble(),
           ),
           Positioned(
-            child: _Bubble(),
             top: 80,
             left: 280,
+            child: _Bubble(),
           ),
         ],
       ),

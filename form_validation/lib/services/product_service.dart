@@ -69,7 +69,7 @@ class ProductsService extends ChangeNotifier {
     final resp = await http.put(url, body: product.toRawJson());
     final decodedData = resp.body;
 
-    print(decodedData);
+    debugPrint(decodedData);
     //Actualizar listado de productos
 
     final index = products.indexWhere((element) => element.id == product.id);
@@ -98,7 +98,7 @@ class ProductsService extends ChangeNotifier {
     final resp = await http.Response.fromStream(streamResponse);
 
     if(resp.statusCode != 200 && resp.statusCode != 201) {
-      print('algo salió mal');
+      debugPrint('algo salió mal');
       return null;
     }
 
