@@ -26,14 +26,14 @@ class LoginScreen extends StatelessWidget {
                   ),
                   Text(
                     'Login',
-                    style: Theme.of(context).textTheme.headline4,
+                    style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(
                     height: 30,
                   ),
                   ChangeNotifierProvider(
                     create: ((context) => LoginFormProvider()),
-                    child: _LoginForm(),
+                    child: const _LoginForm(),
                   ),
                 ],
               ),
@@ -56,7 +56,7 @@ class LoginScreen extends StatelessWidget {
 }
 
 class _LoginForm extends StatelessWidget {
-  const _LoginForm({super.key});
+  const _LoginForm();
 
   @override
   Widget build(BuildContext context) {
