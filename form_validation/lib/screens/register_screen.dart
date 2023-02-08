@@ -1,14 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:form_validation/providers/login_form_provider.dart';
+import 'package:form_validation/services/services.dart';
 import 'package:form_validation/ui/input_decoration.dart';
 import 'package:form_validation/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 
-import '../services/services.dart';
-
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatelessWidget {
+  const RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class LoginScreen extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    'Login',
+                    'Crear cuenta',
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   const SizedBox(
@@ -43,13 +42,13 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 50,
             ),
-            TextButton(onPressed: () => Navigator.pushReplacementNamed(context, 'register'), 
+            TextButton(onPressed: () => Navigator.pushReplacementNamed(context, 'login'), 
             style: ButtonStyle(
               overlayColor: MaterialStateProperty.all(Colors.indigo.withOpacity(0.1)),
               shape: MaterialStateProperty.all(const StadiumBorder()),
             ),
             child: const Text(
-              'Crear una nueva cuenta',
+              '¿Ya tienes una cuenta?',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.black87),
             )),
             const SizedBox(
@@ -120,7 +119,7 @@ class _LoginForm extends StatelessWidget {
                     loginForm.isLoading = true;
 
                     //Validar si el sign up es correcto
-                    final String? resp = await authService.login(loginForm.email, loginForm.password);
+                    final String? resp = await authService.createUser(loginForm.email, loginForm.password);
 
                     loginForm.isLoading = false;
                     if(resp == null) {
@@ -128,8 +127,9 @@ class _LoginForm extends StatelessWidget {
                         Navigator.pushReplacementNamed(context, 'home');
                       }
                     } else {
-                      NotificationsService.showSnackBar(resp);
+                      print(resp);
                     }
+                    
                   },
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(10),
