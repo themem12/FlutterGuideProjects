@@ -48,27 +48,27 @@ class CastMemberScreen extends StatelessWidget {
                         children: [
                           Text(
                             castMember.name,
-                            style: Theme.of(context).textTheme.headline5,
+                            style: Theme.of(context).textTheme.headlineSmall,
                           ),
                           Text(
                             snapshot.data?.getBirthDate() ?? '',
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                           if (snapshot.data?.deathday != null)
                             Text(
                               snapshot.data?.getDeathDate() ?? '',
-                              style: Theme.of(context).textTheme.caption,
+                              style: Theme.of(context).textTheme.bodySmall,
                             ),
                           Text(
                             '${snapshot.data?.placeOfBirth}',
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                           const SizedBox(
                             height: 20,
                           ),
                           Text(
                             'Popularidad: ${snapshot.data?.popularity}',
-                            style: Theme.of(context).textTheme.caption,
+                            style: Theme.of(context).textTheme.bodySmall,
                           ),
                         ],
                       ),
@@ -80,7 +80,7 @@ class CastMemberScreen extends StatelessWidget {
                 ),
                 Text(
                   'Biografía',
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
                 const SizedBox(
                   height: 20,
