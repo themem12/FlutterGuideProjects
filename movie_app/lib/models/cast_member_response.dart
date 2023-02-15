@@ -25,7 +25,7 @@ class CastMemberResponse {
   bool adult;
   List<String> alsoKnownAs;
   String biography;
-  DateTime birthday;
+  DateTime? birthday;
   String? deathday;
   int gender;
   dynamic homepage;
@@ -45,7 +45,7 @@ class CastMemberResponse {
         adult: json["adult"],
         alsoKnownAs: List<String>.from(json["also_known_as"].map((x) => x)),
         biography: json["biography"],
-        birthday: DateTime.parse(json["birthday"]),
+        birthday: json["birthday"] != null ? DateTime.parse(json["birthday"]) : null,
         deathday: json["deathday"],
         gender: json["gender"],
         homepage: json["homepage"],
@@ -53,12 +53,13 @@ class CastMemberResponse {
         imdbId: json["imdb_id"],
         knownForDepartment: json["known_for_department"],
         name: json["name"],
-        placeOfBirth: json["place_of_birth"],
+        placeOfBirth: json["place_of_birth"] ?? '',
         popularity: json["popularity"]?.toDouble(),
-        profilePath: json["profile_path"],
+        profilePath: json["profile_path"] ?? '',
       );
 
   String getBirthDate() {
+    if(birthday == null ) return '';
     final dateString = '$birthday';
     final dateSplitted = dateString.split(' ');
 

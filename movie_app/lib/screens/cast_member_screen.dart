@@ -34,6 +34,7 @@ class CastMemberScreen extends StatelessWidget {
                           image: NetworkImage(castMember.fullProfilePath),
                           placeholder: const AssetImage('assets/no-image.jpg'),
                           height: 140,
+                          width: 100,
                           fit: BoxFit.cover,
                         ),
                       ),
